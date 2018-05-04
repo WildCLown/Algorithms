@@ -52,7 +52,7 @@ class maxRIP {
 
 	public void heapSort() {
 		int aux = this.heapSize;
-		while (this.heapSize-1 > 1) {
+		while (this.heapSize-1 > 0) {
 			int aux2 = this.heap[this.heapSize - 1];
 			this.heap[this.heapSize - 1] = this.heap[0];
 			this.heap[0] = aux2;
@@ -72,7 +72,7 @@ class maxRIP {
 			siftUp(this.heapSize);
 			this.heapSize++;
 		} else {
-			System.out.println("Elemento n„o inserido, Heap cheio");
+			System.out.println("Elemento n√£o inserido, Heap cheio");
 		}
 	}
 
@@ -118,7 +118,7 @@ class maxRIP {
 			this.heapSize--;
 			siftDown(0);
 		} else {
-			System.out.println("N„o h· elementos na Heap");
+			System.out.println("N√£o h√° elementos na Heap");
 		}
 	}
 }
