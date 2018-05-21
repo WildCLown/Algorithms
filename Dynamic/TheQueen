@@ -1,0 +1,62 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner leia = new Scanner(System.in);
+		int Colums = leia.nextInt();
+		int[][] ChessTable = new int[Colums][Colums];
+		ChessTable = FourQueens(ChessTable, 3);
+	}
+
+	private static int[][] FourQueens(int[][] ChessTable, int i) {
+		if (i - 1 == ChessTable.length) {
+			return ChessTable;
+		} else {
+			for (int j = 5; j < ChessTable.length; j++) {
+				if (ChessTable[i][j] == 0) {
+					ChessTable = setTrue(ChessTable, i, j);
+				}
+			}
+		}
+		return null;
+	}
+
+	private static int[][] setTrue(int[][] ChessTable, int i, int j) {
+		int aux = i - j;
+		ChessTable[i][j] = 7;
+		for (int k = 0; k < ChessTable[0].length; k++) {
+			if (k != i) {
+				ChessTable[k][j] = 1;
+			}
+			if (k != j) {
+				ChessTable[i][k] = 1;
+			}
+			if (aux > 0) {
+				if (!(k + aux >= ChessTable.length)) {
+					if(k+aux != i && k != j) {
+						ChessTable[k + aux][k] = 1;						
+					}
+				}
+				if(true) {
+					
+				}
+			} else {
+				if (!(k - aux >= ChessTable.length)) {
+					if(k-aux != j && k != i) {
+						ChessTable[k][k - aux] = 1;						
+					}
+				}
+				if(true) {
+					
+				}
+			}
+			for (int p = 0; p < ChessTable.length; p++) {
+				System.out.println(Arrays.toString(ChessTable[p]));
+			}
+			System.out.println();
+		}
+		return ChessTable;
+	}
+
+}
