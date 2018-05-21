@@ -22,8 +22,9 @@ public class Main {
 		return null;
 	}
 
-	private static int[][] setTrue(int[][] ChessTable, int i, int j) {
+	private static int[][] setTrue(int[][] ChessTable, int i, int j) {//i linha, j colunas
 		int aux = i - j;
+		
 		ChessTable[i][j] = 7;
 		for (int k = 0; k < ChessTable[0].length; k++) {
 			if (k != i) {
@@ -31,30 +32,25 @@ public class Main {
 			}
 			if (k != j) {
 				ChessTable[i][k] = 1;
+			}if(true) {
+				
 			}
-			if (aux > 0) {
+			if (aux > 0) { // i > j
 				if (!(k + aux >= ChessTable.length)) {
-					if(k+aux != i && k != j) {
-						ChessTable[k + aux][k] = 1;						
+					if (k + aux != i && k != j) {
+						ChessTable[k + aux][k] = 1;
 					}
 				}
-				if(true) {
-					
-				}
-			} else {
+			} else { // j>i
 				if (!(k - aux >= ChessTable.length)) {
-					if(k-aux != j && k != i) {
-						ChessTable[k][k - aux] = 1;						
+					if (k - aux != j && k != i) {
+						ChessTable[k][k - aux] = 1;
 					}
 				}
-				if(true) {
-					
-				}
 			}
-			for (int p = 0; p < ChessTable.length; p++) {
-				System.out.println(Arrays.toString(ChessTable[p]));
-			}
-			System.out.println();
+		}
+		for (int p = 0; p < ChessTable.length; p++) {
+			System.out.println(Arrays.toString(ChessTable[p]));
 		}
 		return ChessTable;
 	}
