@@ -32,8 +32,10 @@ public class Main {
 			}
 			if (k != j) {
 				ChessTable[i][k] = 1;
-			}if(true) {
-				
+			}if(k<= (i+j)) {
+				if(((i+j)-k)!=i || k!=j){
+				ChessTable[(i+j)-k][k] = 1;
+				}
 			}
 			if (aux > 0) { // i > j
 				if (!(k + aux >= ChessTable.length)) {
