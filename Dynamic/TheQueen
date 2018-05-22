@@ -6,16 +6,19 @@ public class Main {
 		Scanner leia = new Scanner(System.in);
 		int Colums = leia.nextInt();
 		int[][] ChessTable = new int[Colums][Colums];
-		ChessTable = FourQueens(ChessTable, 3);
+		ChessTable = FourQueens(ChessTable, 0); // change 0 to modify I position
 	}
 
 	private static int[][] FourQueens(int[][] ChessTable, int i) {
 		if (i - 1 == ChessTable.length) {
 			return ChessTable;
 		} else {
-			for (int j = 4; j < ChessTable.length; j++) {
+			for (int j = 0; j < ChessTable.length; j++) { // change 0 to modify J position
 				if (ChessTable[i][j] == 0) {
 					ChessTable = setTrue(ChessTable, i, j);
+				}
+				else {
+					
 				}
 			}
 		}
