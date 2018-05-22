@@ -6,7 +6,7 @@ public class Main {
 		Scanner leia = new Scanner(System.in);
 		int Colums = leia.nextInt();
 		int[][] ChessTable = new int[Colums][Colums];
-		ChessTable = FourQueens(ChessTable, 3);
+		ChessTable = FourQueens(ChessTable, 4);
 	}
 
 	private static int[][] FourQueens(int[][] ChessTable, int i) {
@@ -22,36 +22,40 @@ public class Main {
 		return null;
 	}
 
-	private static int[][] setTrue(int[][] ChessTable, int i, int j) {//i linha, j colunas
-		int aux = i - j;
-		
+	private static int[][] setTrue(int[][] ChessTable, int i, int j) {// i linha, j colunas
+		int aux = i - j, aux2 = i + j, aux3 = ChessTable.length;
 		ChessTable[i][j] = 7;
-		for (int k = 0; k < ChessTable[0].length; k++) {
+		for (int k = 0; k < aux3; k++) {
 			if (k != i) {
 				ChessTable[k][j] = 1;
 			}
 			if (k != j) {
 				ChessTable[i][k] = 1;
-			}if(k<= (i+j)) {
-				if(((i+j)-k)!=i || k!=j){
-				ChessTable[(i+j)-k][k] = 1;
+			}
+			if ((k <= aux2) && aux2 < aux3) {
+				if ((aux2 - k) != i || k != j) {
+					ChessTable[aux2 - k][k] = 1;
+				}
+			} else if ((k <= aux2 + 1 - aux3) && aux2 >= aux3) {
+				if (((aux2 + 1 - aux3) + k) != j || (aux3-1-k) != i) {
+					ChessTable[(aux3-1)-k][(aux2 + 1 - aux3) + k] = 1;
 				}
 			}
-			if (aux > 0) { // i > j
-				if (!(k + aux >= ChessTable.length)) {
+			if (aux > 0) { // i >= j
+				if (!(k + aux >= aux3)) {
 					if (k + aux != i && k != j) {
 						ChessTable[k + aux][k] = 1;
 					}
 				}
 			} else { // j>i
-				if (!(k - aux >= ChessTable.length)) {
+				if (!(k - aux >= aux3)) {
 					if (k - aux != j && k != i) {
 						ChessTable[k][k - aux] = 1;
 					}
 				}
 			}
 		}
-		for (int p = 0; p < ChessTable.length; p++) {
+		for (int p = 0; p < aux3; p++) {
 			System.out.println(Arrays.toString(ChessTable[p]));
 		}
 		return ChessTable;
