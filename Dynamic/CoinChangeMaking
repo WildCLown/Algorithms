@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class CoinChange {
+	public static void main(String[] args) {
+		Scanner leia = new Scanner(System.in);
+		int Value = leia.nextInt();
+		int[][] BackPack = new int[Value + 1][2];
+		int coinNumber = leia.nextInt();
+		for (int i = 0; i < coinNumber; i++) {
+			int coin = leia.nextInt();
+			for (int j = coin; j < BackPack.length; j++) {
+				if (BackPack[j][0] == coin + BackPack[j-coin][0]) {
+					if (BackPack[j][1] > 1 + BackPack[j - coin][1]) {
+						BackPack[j][1] = (1 + BackPack[j - coin][1]);
+					}
+				}else {
+					if(BackPack[j][0] < coin + BackPack[j-coin][0]) {
+						BackPack[j][0] = (coin + BackPack[j-coin][0]);
+						BackPack[j][1] = (1 + BackPack[j-coin][1]);
+					}
+				}
+			}
+		}
+		System.out.println(BackPack[Value][0]+" and "+BackPack[Value][1]);
+	}
+}
