@@ -1,0 +1,35 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class KnapSack {
+	public static void main(String[] args) {
+		Scanner leia = new Scanner(System.in);
+		int bagSize = leia.nextInt();
+		int objects = leia.nextInt();
+		int[][] knapSack = new int[objects][bagSize];
+		for (int i = 0; i < objects; i++) {
+			int vallue = leia.nextInt();
+			int weight = leia.nextInt();
+			if (i != 0) {
+				for (int j = 1; j < bagSize; j++) {
+					if (j >= weight) {
+						if (vallue + knapSack[i - 1][j - weight] > knapSack[i - 1][j]) {
+							knapSack[i][j] = vallue + knapSack[i - 1][j - weight];
+						} else {
+							knapSack[i][j] = knapSack[i - 1][j];
+						}
+					} else {
+						knapSack[i][j] = knapSack[i - 1][j];
+					}
+				}
+			} else {
+				for (int j = weight; j < bagSize; j++) {
+					knapSack[i][j] = vallue;
+				}
+			}
+		}
+		for (int i = 0; i < objects; i++) {
+			System.out.println(Arrays.toString(knapSack[i]));
+		}
+	}
+}
