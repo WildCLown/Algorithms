@@ -1,0 +1,23 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class CoinRow {
+	public static void main(String[] args) {
+		Scanner leia = new Scanner(System.in);
+		int index = leia.nextInt();
+		int[] array = new int[index + 1];
+		for (int i = 1; i <= index; i++) {
+			int coin = leia.nextInt();
+			if (i == 1) {
+				array[i] = coin;
+			} else {
+				if (array[i - 1] >= coin + array[i - 2]) {
+					array[i] = array[i - 1];
+				} else {
+					array[i] = coin + array[i - 2];
+				}
+			}
+		}
+		System.out.println(Arrays.toString(array));
+	}
+}
