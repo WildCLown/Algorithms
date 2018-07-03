@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+   using namespace std;
+   string nome;
+   int idade, sum, sub, mult, division;
+   void teix(){
+   nome= "My own name";
+   }
+   int suma(int a,int b){
+   return a+b;
+   }
+   int modul(int a, int b){
+   return a%b;
+   }
+   int main(){
+   
+   cout<<"Hello World\n My name is Mike tyson\n";
+   cout<<"You can print anything\n"<<endl;
+   cin>>sum>>sub;
+   cout<<modul(sum, sub)<<endl;
+}
+//Para criar um arquivo de texto CPP, é necessário entrar em uma pasta com cd
+//para gerar o arquivo C++, g++ (nome).cpp -std=c++, e para mudar o nome do arquivo que será gerado ao compilar, deve colocar -o (nome)
+//Para compilar, deve usar o comando  g++ (nome).cpp -std=c++11
+//Para compilar java, deve usar o comando javac (nome).java
+//Para rodar, ./(nome)
+//Em java, java (nome)
+//Podemos utilizar de \n ou endl para quebra de linhas
+//cat < (nome do arquivo de entrada) ; mostra a entrada do arquivo que você possui.
+// Para fazer seu arquivo ler outro arquivo: ./(nome) < (nome do arquivo de entrada)
+// E Para gerar um arquivo com a resposta, adicione (> (nome do arquivo de saida))
+//Para passar algo para o github, em um repositório existente:
+//git clone (https do repositório).git
