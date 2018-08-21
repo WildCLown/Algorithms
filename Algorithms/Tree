@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct node{
+    int key;
+    node *left;
+    node *right;
+};
+node *insert(node *t , int key){
+    node *aux = new node();
+    aux->key = key;
+    aux->left = NULL;
+    aux->right = NULL;
+    if(t == NULL){
+        t = aux;
+    }else{
+        if(aux-> key <= t->key){
+            t = insert(t->left, key);
+        }else if(aux ->key > t->key){
+            t= insert(t->right, key);
+        }  
+    }
+}
+
+
+void inorder(node *root) {
+	if(root != NULL) {
+		inorder(root->left);
+		cout << root->key << " ";
+		inorder(root->right);
+	}
+}
+
+int main(){
+    node *Binary = new node();
+    Binary=insert(Binary,10);
+    Binary= insert(Binary,7);
+    Binary = insert(Binary,6);
+    Binary = insert(Binary,12);
+    Binary = insert(Binary, 8);
+    Binary = insert(Binary, 2);
+    inorder(Binary);
+
+    return 0;
+}
