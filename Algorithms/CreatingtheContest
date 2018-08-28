@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+
+int problems,x,y,controlAt,controlTot;
+int main(){
+    cin>>problems;
+    for(int i= 0; i<problems; i++){
+        cin>>x;
+        if(y==0){
+            y = x;
+            controlAt++;
+        }else if(x>2*y){
+            y = x;
+            controlTot = max(controlAt,controlTot);
+            controlAt = 1;
+        }else{
+            y = x;
+            controlAt++;
+        }
+    }
+    cout<<max(controlAt,controlTot)<<endl;
+
+
+    return 0;
+}
