@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int size, repeats;
-string name, answer;
+string name;
 string checkIt(int i, int aux, string name){
     string answer = "";
     for(int j = i; j<name.length(); j++){
@@ -12,7 +12,6 @@ string checkIt(int i, int aux, string name){
         }
     }
     answer = name.substr(aux);
-    cout<<answer<<endl;
     return answer;
 }
 
@@ -20,6 +19,7 @@ string checkIt(int i, int aux, string name){
 int main(){
 cin>>size>>repeats;
 cin>>name;
+    string answer = name;
 for(int i = 1; i<size; i++){
    if(name.at(i) == name.at(0)){
        answer = checkIt(i, 0, name);
