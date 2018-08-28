@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+int size, repeats;
+string name, answer;
+string checkIt(int i, int aux, string name){
+    string answer = "";
+    for(int j = i; j<name.length(); j++){
+        if(name.at(j) == name.at(aux)){
+            aux++;
+        }else{
+            return name;
+        }
+    }
+    answer = name.substr(aux);
+    cout<<answer<<endl;
+    return answer;
+}
+
+
+int main(){
+cin>>size>>repeats;
+cin>>name;
+for(int i = 1; i<size; i++){
+   if(name.at(i) == name.at(0)){
+       answer = checkIt(i, 0, name);
+   }
+   if(name != answer){
+       break;
+   }
+}
+cout<<name;
+
+for(int i = 0; i<repeats-1;i++){ //concatena a palavra recebida com o restante que repete
+   cout<<answer;
+}
+
+
+
+    return 0;
+}
