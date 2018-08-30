@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-int lines, x, y;
+int lines, x, y, aux;
 string aux;
 bool control;
 
@@ -14,11 +14,26 @@ int main(){
         objects[i] = {x,y};
     }
     for(int i = 0; i<lines; i++){
-    	for(int j = 0; j<lines;j++){
-    	
+            if(i==0){
+                x = objects[1].first;
+                y = objects[1].second;
+            }else{
+                x = objects[0].first;
+                y = objects[0].second;
+            }
+    	for(int j = 0; j<lines;j++){ 
+    	if(j!=i){
+            if(x>objects[j].first){
+                x = objects[j].first;
+            }
+            if(y<objects[j].second){
+                y = objects[j].second
+            }
+        }
     	
     	
     	}
+        answers[i] = y-x;
     }
     
     
