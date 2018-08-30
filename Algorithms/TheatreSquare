@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+double a,n,m;
+long long control1, control2;
+bool c1 = true, c2 = true;
+int main(){
+ cin>>n>>m>>a;
+ control1 = ceil(n/a);
+ control2 = ceil(m/a);
+ control1 *= control2;
+ cout<<control1;    
+}
