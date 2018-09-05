@@ -1,67 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int queues, mini,where, aux=1;
+int n, diferent;
+int st1[26], st2[26];
+string a,b;
 bool found;
+char aux;
+bool checkIt(){
+for(int i =0; i<26; i++){
+    if(st1[i] != st2[i]){
+        return false;
+    }
+}
+return true;
+}
 int main(){
-cin.tie(0); ios::sync_with_stdio(0);
-cin>>queues;
-int arranjo[queues];
-for(int i=0; i<queues; i++){
-    if(i==0){
-        cin>>arranjo[queues-1];
-        mini= arranjo[queues-1];
-        if(arranjo[queues-1]==0){
-            cout<<"1\n";
-            found = true;
-            break;
+    cin.tie(0); ios::sync_with_stdio(0);
+    cin>>n;
+    cin>>b>>a;
+    for(int i=0; i<n; i++){
+        st1[a.at(i)-97]++;
+        st2[b.at(i)-97]++;
+    }
+    if(checkIt()){
+        for(int i = 0; i<n; i++){
+            if(a[i] != b[i]){
+                cout<<i+1<<" ";
+                for(int j = i+1; j<n; j++){
+                    if(a[i] == b[j]){
+                        aux = b[j];
+                        b[j] = b[i];
+                        b[i] = aux;
+                        cout<<j+1<<" ";
+                        cout<<a<<" "<<b<<"\n";
+                        break;
+                    }
+                }
+            }
         }
     }else{
-        cin>>arranjo[i-1];
-        if(arranjo[i-1] <=mini){
-            mini = arranjo[i-1];
-            where = i;
-        }
+        cout<<"-1\n";
     }
-}
-cout<<where<<"\n";
-for(int i = 0; i<queues; i++){
-    arranjo[i] -=mini;
-    cout<<arranjo[i]<<" ";
-}
-cout<<"\n";
-if(mini == 0){
-for(int i = 0; i<queues && !found; i++){
-   if(i != queues-1){
-       if(arranjo[i]-(i+1)<=0){
-           cout<<i+2<<"one\n";
-           found = true;
-       }
-   }else{
-       if(arranjo[queues-1]-(i+1) <=0){
-           cout<<"1two\n";
-           found = true;
-       }
-   }
-}
-}else{
-for(int i = where;!found ; i++){
-    if(arranjo[i]-aux <= 0){
-        cout<<i%queues;
-    }
-}
-
-}
-
     return 0;
 }
-
-
-/*
-6
-5 2 6 5 7 4
-
-0 4 3 5 2 3
-2 3 4 5 6 1
-where = 1;
-*/
