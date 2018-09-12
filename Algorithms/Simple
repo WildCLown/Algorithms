@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int numbers;
+int from,to,max , result;
+int main(){
+	cin.tie(0);
+	los:sync_with_stdio(0);
+	cin>>numbers;
+	while(numbers--){
+		cin>>from>>to;
+		int arranjo[(to-from)+1]; 
+		for(int i = from; i<=to;i++){
+			
+		}
+
+	
+
+		cout<<"Between "<<from<<" and "<<to<<","<<max<<" has a maximum of ";
+		cout<<result<<" divisors.\n";
+	}
+
+
+
+
+}
+/*
+1000
+500 2
+250 2
+125 2
+25 5
+5 5
+1 5
+2^3 * 5^3
+
+*/
