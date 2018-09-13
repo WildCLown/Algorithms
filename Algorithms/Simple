@@ -1,31 +1,52 @@
 #include <bits/stdc++.h>
 using namespace std;
-int solveIt(int){
+int solveIt(int x, int arranjo[], int saize){
 	
+	if(x == 1){
+		int aux = 1;
+		for(int i = 0; i< saize; i++){
+		aux*=arranjo[i];
+		}
+		return aux;	
+	}
+	int aux2;
+	for(int i = 0; i<x-1;i++){
+			if(x%(i+2)==0){
+			aux2 = i+2;
+			arranjo[i]++;
+			break;
+			}
+	}
+	return solveIt(x/aux2, arranjo,saize);
+
 }
 
 int numbers;
-int from,to,max , result;
+int from,to,maxi , results;
 int main(){
 	cin.tie(0);
-	los:sync_with_stdio(0);
+	ios::sync_with_stdio(0);
 	cin>>numbers;
 	while(numbers--){
 		cin>>from>>to;
 		int arranjo[(to-from)+1]; 
 
 		for(int i = from; i<=to;i++){
-			arranjo[i-from] = solveIt(i);
-			if(results < arranjo[i-from]){
-				results = arranjo[i-from];
-				max = i;
+			int arranjo[i-1];
+			for(int j = 0; j<i-1; j++){
+				arranjo[j] = 1;			
+			}
+		arranjo[i-from] = solveIt(i, arranjo, i-1);
+		if(results < arranjo[i-from]){
+			results = arranjo[i-from];
+			maxi = i;
 			}
 		}
 
 	
 
-		cout<<"Between "<<from<<" and "<<to<<","<<max<<" has a maximum of ";
-		cout<<result<<" divisors.\n";
+		cout<<"Between "<<from<<" and "<<to<<","<<maxi<<" has a maximum of ";
+		cout<<results<<" divisors.\n";
 	}
 
 
