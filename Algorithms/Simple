@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
-int solveIt(int x, int arranjo[], int saize){
+int solveIt(long x, long arranjo[], long saize){
 	
-	if(x == 1){
-		int aux = 1;
+	if(x == 1){//caso base
+		long aux = 1;
 		for(int i = 0; i< saize; i++){
 		aux*=arranjo[i];
 		}
@@ -11,33 +11,36 @@ int solveIt(int x, int arranjo[], int saize){
 	}
 	int aux2;
 	for(int i = 0; i<x-1;i++){
-			if(x%(i+2)==0){
+			if(x%(i+2)==0){//se for divisivel, ira dividir
 			aux2 = i+2;
 			arranjo[i]++;
 			break;
 			}
-	}
+	}//Um valor certamente irá sair daqui, nem que seja o proprio valor
 	return solveIt(x/aux2, arranjo,saize);
 
 }
 
-int numbers;
-int from,to,maxi , results;
+long numbers;
+long from,to,maxi , results;
+
 int main(){
 	cin.tie(0);
 	ios::sync_with_stdio(0);
 	cin>>numbers;
 	while(numbers--){
 		cin>>from>>to;
-		int arranjo[(to-from)+1]; 
+		long arranjo[(to-from)+1];//cria array para armazenar os maiores divisores
 
 		for(int i = from; i<=to;i++){
-			int arranjo[i-1];
+			long arranjo2[i-1];//array para fazer a decomposição do numero
+			//-1 por ignorar o valor de -1.
 			for(int j = 0; j<i-1; j++){
-				arranjo[j] = 1;			
+				arranjo2[j] = 1;//icia com 1 para poder multiplicar posteriormente			
 			}
-		arranjo[i-from] = solveIt(i, arranjo, i-1);
-		if(results < arranjo[i-from]){
+		arranjo[i-from] = solveIt(i, arranjo2, i-1);//metodo para decompor
+		
+		if(results < arranjo[i-from]){//armazena a melhor resposta
 			results = arranjo[i-from];
 			maxi = i;
 			}
@@ -45,8 +48,10 @@ int main(){
 
 	
 
-		cout<<"Between "<<from<<" and "<<to<<","<<maxi<<" has a maximum of ";
+		cout<<"Between "<<from<<" and "<<to<<", "<<maxi<<" has a maximum of ";
 		cout<<results<<" divisors.\n";
+		results = 0;
+		maxi = 0;
 	}
 
 
