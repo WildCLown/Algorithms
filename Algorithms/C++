@@ -20,6 +20,7 @@
 }
 //Para criar um arquivo de texto CPP, é necessário entrar em uma pasta com cd
 //para gerar o arquivo C++, g++ (nome).cpp -std=c++, e para mudar o nome do arquivo que será gerado ao compilar, deve colocar -o (nome)
+// Para saber somente o primeiro erro, coloque -Wfatal-errors
 //Para compilar, deve usar o comando  g++ (nome).cpp -std=c++11
 //Para compilar java, deve usar o comando javac (nome).java
 //Para rodar, ./(nome)
