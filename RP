@@ -87,3 +87,34 @@ worstBest = function(){
   data.frame(FILM,GRADE,YEAR)
 }
 worstBest()
+niceYear = function(){ #8 Retornar ano com maior numero de filmes com nota maior que 6.5
+  answ = 0
+  a = 1
+  k = 1
+  filmes = c()
+  notao = c()
+  while(a<=48){
+    if(NOTAS[a] > 6.5){
+      if(ANO[a] %in% filmes){
+        zum = 1
+        while(zum<k){
+          if(filmes[zum] == ANO[a]){
+            notao[zum] = notao[zum] + 1
+            answ = max(answ, notao[zum])
+            break
+          }else{
+            z = z+1
+          }
+        }
+      }else{
+        filmes[k] = ANO[a]
+        notao[k] = 1
+        answ = max(answ,notao[k])
+        k = k+1
+      }
+    }
+    a = a+1
+  }
+  print(answ)
+}
+niceYear()
