@@ -88,7 +88,7 @@ worstBest = function(){
 }
 worstBest()
 niceYear = function(){ #8 Retornar ano com maior numero de filmes com nota maior que 6.5
-  answ = 0
+  answ = 0 # Mas não o funcional
   a = 1
   k = 1
   filmes = c()
@@ -118,3 +118,38 @@ niceYear = function(){ #8 Retornar ano com maior numero de filmes com nota maior
   print(answ)
 }
 niceYear()
+#8 Faça uma função que retorne o ano em que saíram 
+#mais filmes com notas maiores ou iguais a seis e meio (6,5).
+niceYear2 = function(){  
+  a = 1
+  answ = 0
+  resp = 0
+  vec = c(1:2800)
+  for(b in vec){
+    vec[b] = 0
+  }
+  while(a<=48){
+    if(NOTAS[a] >= 6.5){
+      vec[ANO[a]] = vec[ANO[a]] + 1
+      if(answ < vec[ANO[a]]){
+       answ = vec[ANO[a]]
+        resp = ANO[a]
+      }
+    }
+    a = a + 1
+  }
+  print(resp)
+}
+niceYear2()
+#9 Faça um histograma onde mostra a frequência de filmes 
+#com notas maiores ou iguais a seis de cada ano.
+a = 1
+vec = c(1993:2018)
+while(a<=48){
+  if(NOTAS[a] >= 6){
+    vec[ANO[a]-1993] = vec[ANO[a]-1993] + 1
+  }
+  a = a + 1
+}
+hist(vec, breaks = 26, col ="chartreuse4", set border = NA)
+
