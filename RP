@@ -1,18 +1,24 @@
 #-E quem foi o cagão?
-#-Certamente não foi o ** de gtsa.
-x = read.csv("Sandler.csv") #1 Print Data Frame
-TITULOS = (x$TITULOS)
+#-Certamente não foi o ** de GTSA.
+#Trabalho em conjunto de GTSA e ACCS2
+#1 Descarregue o arquivo .csv da planilha e imprima o dataframe obtido exatamente do jeito que ele se encontra.
+x = read.csv("Sandler.csv")
+TITULOS = (x$TITULOS) #Nomes como na planilha para o dataframe ter mesmo nome de colunas
 NOTAS =(x$NOTAS)
 auxvkt = (x$NOTAS)
 ANO = (x$ANO)
 data.frame(TITULOS,NOTAS,ANO) 
-y = 0 #2 Média de NOTAS
-for(a in NOTAS){
+#2 Encontre a média das notas
+y = 0 
+for(a in NOTAS){ #Coleta os valores
   y = y + a
 }
-y = y/48  
+y = y/48  #Número de elementos da planilha, alterado caso houvesse número maior
+#Poderia ter utilizado um contador dentro do for para específicar o número...
 print(y)
-l = 0 #3 Desvio Padrão
+#3 Encontre o desvio padrão das notas
+
+l = 0 
 k = 0
 for(a in NOTAS){
   k = (a-y)
@@ -20,8 +26,9 @@ for(a in NOTAS){
 }
 l = sqrt(l/48) 
 print(l)
-auxvkt = sort(auxvkt,decreasing = FALSE) #4 Moda
-a = 2 
+#4 Encontre a moda das notas
+auxvkt = sort(auxvkt,decreasing = FALSE)#Ordena elementos para ter elementos iguais seguidos
+a = 2 #Segunda posição
 aux = 0
 laux = 0
 resp = 0
@@ -29,8 +36,9 @@ while(a<=48){
   if(auxvkt[a] == auxvkt[a-1]){
     aux = aux + 1
   }else{
-    if(laux < aux){
-      laux = aux
+    if(laux < aux){ #Seta a resposta como a maior moda já encontrada
+    #Garantido de não haver o mesmo elemento adiante
+      laux = aux 
       aux = 0
       resp = auxvkt[a-1]
     }
@@ -38,26 +46,25 @@ while(a<=48){
   a = a+1
 }
 print(resp)
+#5 Faça uma função que retorna apenas os nomes dos filmes que possuem notas maiores ou iguais a seis
 over6 = function(){
-  a = 1 #5 Filmes acima ou igual de Nota 6
+  a = 1
   aux = 1
   filmes = c("")
-  while(a<=48){ 
+  while(a<=48){ #Percorre vetor
     if(NOTAS[a] >=6){
-      #filmes[aux] = TITULOS[a]
-      #aux = aux+1
       print(TITULOS[a], max.levels = 0)
     }
     a = a+1
   }
-  #print(filmes)
 }
 over6()
+#6 Faça uma função que retorna quantos filmes possuem notas abaixo de seis
 under6 = function(){
-  a = 1 #6 Quantidade de Filmes abaixo de Nota 6
+  a = 1 
   answ = 0
   while(a<=48){
-    if(NOTAS[a]<6){
+    if(NOTAS[a]<6){#Caso sua nota seja abaixo de 6, incrementa
       answ = answ + 1
     }
     a = a+1
@@ -65,11 +72,13 @@ under6 = function(){
   print(answ) 
 }
 under6()
+#7 Faça uma função que retorna o nome do filme com menor pontuação e o nome do filme com maior pontuação, nessa ordem.
+#Por fim, faça um dataframe com os dois filmes encontrados com as colunas TÍTULO, NOTA, ANO assim como o original.
 worstBest = function(){
-  a = 1 #7 Dataframe do melhor e do pior
-  FILM = c("            ","               ")
-  YEAR = c(0,0)
-  GRADE = c(0,0)
+  a = 1 
+  FILM = c("            ","               ")#Caso não se importe, nao fiz EXATAMENTE igual
+  YEAR = c(0,0)#Pois os vetores possuem nome diferente, deixando o dataframe com os nomes diferentes
+  GRADE = c(0,0)#Mas deixei em Inglês para ser o mais próximo possivel
   auxvkt = (x$NOTAS)
   auxvkt = sort(auxvkt,decreasing = FALSE)
   while(a<=48){
