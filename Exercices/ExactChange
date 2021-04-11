@@ -1,0 +1,98 @@
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]) {
+		Scanner leia = new Scanner(System.in);
+		int index = leia.nextInt();
+		for (int k = 0; k < index; k++) {
+			int dosh = leia.nextInt();
+			int myCoin = leia.nextInt();
+			int bagSize = dosh;
+			Linked elements = new Linked();
+			for (int p = 0; p < myCoin; p++) {
+				int coin = leia.nextInt();
+				elements.insert(coin);
+				if (coin >= bagSize) {
+					bagSize = coin;
+				}
+
+			}
+			bagSize = 2*bagSize;
+			int[][] bag = new int[bagSize + 1][2];
+			int[][] aux = new int[bagSize + 1][2];
+			while (elements.check) {
+				int value = elements.key;
+				elements.pop(value);
+				for (int j = value; j <= bagSize; j++) {
+					if (bag[j][0] < value + aux[j - value][0]) {
+						bag[j][0] = value + aux[j - value][0];
+						bag[j][1] = 1 + aux[j - value][1];
+					} else if (bag[j][0] == value + aux[j - value][0]) {
+						if(bag[j][1] > 1 + aux[j - value][1]) {
+							bag[j][1] = 1 + aux[j - value][1];
+						}
+					}
+				}
+				for (int o = 0; o < 2; o++) {
+					for (int j = 1; j < aux.length; j++) {
+						aux[j][o] = bag[j][o];
+					}
+				}
+			}
+			int answer = 0, answer2 = 0;
+			boolean found = false;
+			for (int i = dosh; (i < bagSize + 1) && !found; i++) {
+				if (bag[i][0] >= dosh) {
+					answer2 = bag[i][0];
+					answer = bag[i][1];
+					found = true;
+				}
+			}
+			if (answer == 0) {
+				System.out.println();
+			} else {
+				System.out.println(answer2 + " " + answer);
+			}
+		}
+
+	}
+}
+
+class Linked {
+	Linked list;
+	boolean check;
+	int key;
+
+	public Linked() {
+		this.list = null;
+		this.key = 0;
+		this.check = false;
+	}
+
+	public void insert(int key) {
+		if (this.list == null) {
+			this.key = key;
+			this.check = true;
+			this.list = new Linked();
+		} else {
+			this.list.insert(key);
+		}
+	}
+
+	public void pop(int key) {
+		if (this.key == key) {
+			if (this.check) {
+				this.key = this.list.key;
+				this.check = this.list.check;
+				this.list = this.list.list;
+			}
+		} else {
+			if (!this.check) {
+				System.out.println("Elemento não existente.");
+			} else {
+				this.list.pop(key);
+			}
+		}
+	}
+}

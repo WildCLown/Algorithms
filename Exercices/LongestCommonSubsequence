@@ -1,0 +1,36 @@
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]) {
+		Scanner leia = new Scanner(System.in);
+		while (leia.hasNext()) {
+			String first = leia.nextLine(), second = leia.nextLine();
+			System.out.println(lcs(first, second));
+		}
+	}
+
+	private static int lcs(String first, String second) {
+		int pd[][] = new int[first.length()+1][second.length()+1];
+		for (int i = 0; i <= first.length(); i++) {
+			for (int j = 0; j <= second.length(); j++) {
+				if (i == 0 || j == 0) {
+					pd[i][j] = 0;
+				} else if (first.charAt(i - 1) == second.charAt(j - 1)) {
+					pd[i][j] = pd[i - 1][j - 1] + 1;
+				} else {
+					pd[i][j] = max(pd[i - 1][j], pd[i][j - 1]);
+				}
+			}
+		}
+		return pd[first.length()][second.length()];
+	}
+
+	private static int max(int i, int j) {
+		if (i >= j) {
+			return i;
+		} else {
+			return j;
+		}
+	}
+}

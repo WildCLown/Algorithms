@@ -1,0 +1,118 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner leia = new Scanner(System.in);
+		boolean found = false;
+		boolean kickstart = true;
+		while (!found) {
+			if(!kickstart) {
+				System.out.println();
+			}else {
+				kickstart = false;
+			}
+			int control = leia.nextInt();
+			boolean foundNumber = false;
+			if (control != 0) {
+				for (int i = 1111; i < 50000; i++) {
+					if (i * control < 100000) {
+						String aux = Integer.toString(i), aux2 = Integer.toString(i * control);
+						int zero = 0, one = 0, two = 0, three = 0, four = 0, five = 0, six = 0, seven = 0, eight = 0,
+								nine = 0;
+						if (i < 10000) {
+							zero++;
+						}
+						if (i * control < 10000) {
+							zero++;
+						}
+						for (int k = 0; k < aux.length(); k++) {
+							switch (aux.charAt(k)) {
+							case '0':
+								zero++;
+								break;
+							case '1':
+								one++;
+								break;
+							case '2':
+								two++;
+								break;
+							case '3':
+								three++;
+								break;
+							case '4':
+								four++;
+								break;
+							case '5':
+								five++;
+								break;
+							case '6':
+								six++;
+								break;
+							case '7':
+								seven++;
+								break;
+							case '8':
+								eight++;
+								break;
+							case '9':
+								nine++;
+								break;
+							}
+						}
+						for (int k = 0; k < aux2.length(); k++) {
+							switch (aux2.charAt(k)) {
+							case '0':
+								zero++;
+								break;
+							case '1':
+								one++;
+								break;
+							case '2':
+								two++;
+								break;
+							case '3':
+								three++;
+								break;
+							case '4':
+								four++;
+								break;
+							case '5':
+								five++;
+								break;
+							case '6':
+								six++;
+								break;
+							case '7':
+								seven++;
+								break;
+							case '8':
+								eight++;
+								break;
+							case '9':
+								nine++;
+								break;
+							}
+						}
+						if (zero < 2 && one < 2 && two < 2 && three < 2 && four < 2 && five < 2 && six < 2 && seven < 2
+								&& eight < 2 && nine < 2) {
+							if (i < 10000) {
+								System.out.println(i * control + " / 0" + i + " = " + control);
+								foundNumber = true;
+							} else {
+								System.out.println(i * control + " / " + i + " = " + control);
+								foundNumber = true;
+							}
+
+						}
+
+					}
+				}
+				if (!foundNumber) {
+					System.out.println("There are no solutions for " + control + ".");
+				}
+			} else {
+				found = true;
+			}
+		}
+	}
+}

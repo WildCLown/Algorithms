@@ -1,0 +1,29 @@
+
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String args[]) {
+		Scanner leia = new Scanner(System.in);
+		int answers[][] = answer();
+		while (leia.hasNext()) {
+			int value = leia.nextInt();	
+			System.out.println(answers[5][value]);
+		}
+	}
+
+	private static int[][] answer() {
+		int memo[][] = new int[6][7490];
+
+		memo[0][0] = 1;
+		int a[] = { 0, 1, 5, 10, 25, 50 };
+		for (int i = 1; i <= 5; i++) {
+			for (int ammount = 0; ammount <= 7489; ammount++) {
+				memo[i][ammount] = memo[i - 1][ammount];
+				if (ammount - a[i] >= 0) {
+					memo[i][ammount] += memo[i][ammount-a[i]];
+				}
+			}
+		}
+		return memo;
+	}
+}
