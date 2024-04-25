@@ -4,8 +4,6 @@
  * @param {number} p
  * @return {number}
  */
-//011123
-//
 var countDistinct = function(nums, k, p) {
     let set = new Set();
     for(let i = 0; i<nums.length;i++){
@@ -14,12 +12,11 @@ var countDistinct = function(nums, k, p) {
         for(let j = i; j<nums.length;j++){
             if(nums[j]%p == 0){
                 countNum++;
+                if(countNum > k){
+                    break;
+                }
             }
-            if(countNum <= k){
-                aux.push(nums[j]);
-            }else{
-                break;
-            }
+            aux.push(nums[j]);
             set.add(aux.join("-"));
         }
     }
